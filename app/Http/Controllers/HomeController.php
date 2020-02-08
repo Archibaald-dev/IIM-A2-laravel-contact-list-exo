@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-
+use App\User;
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -15,9 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        /* TODO Récupérer tout les utilisateurs, et renvoyer la view "home.blade.php avec les utilisateurs" */
+        $users=User::all();
+        return view('home',['users'=>$users]);
+
     }
 }
-
-
-

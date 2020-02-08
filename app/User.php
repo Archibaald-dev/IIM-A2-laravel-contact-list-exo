@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Contact;
+use App\User;
 
 class User extends Authenticatable
 {
@@ -20,15 +22,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -38,5 +31,9 @@ class User extends Authenticatable
     ];
 
 
-    /* TODO Relation pour récupérer les contacts d'un utilisateur */
+public function contacts() {
+    return $this->hasMany('App\Contact');
+
 }
+}
+
